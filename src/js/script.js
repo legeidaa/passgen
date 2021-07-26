@@ -1,74 +1,48 @@
-$('.feedback__slider').slick({
-    centerMode: true,
-    centerPadding: '60px',
-    slidesToShow: 3,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 3
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 1
-        }
-      }
-    ]
-  });
+let numbers = document.querySelector('#numbers'),
+	upper = document.querySelector('#upper'),
+	lower = document.querySelector('#lower'),
+	symbols = document.querySelector('#symbols'),
+	range = document.querySelector('#range'),
+	rangeSpan = document.querySelector('.label-range span'),
+	result = document.querySelector('.result span')
 
 
-
-
-
-window.addEventListener('DOMContentLoaded', () => {
-    const menu = document.querySelector('.manage__nav-menu'),
-    menuItem = document.querySelectorAll('.menu_item'),
-    hamburger = document.querySelector('.hamburger');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('hamburger_active');
-        menu.classList.toggle('manage__nav-menu_active');
-    });
-
-    menuItem.forEach(item => {
-        item.addEventListener('click', () => {
-            hamburger.classList.toggle('hamburger_active');
-            menu.classList.toggle('manage__nav-menu_active');   
-        });
-    });
-
+rangeSpan.innerText = range.value;
+range.addEventListener("input", function() {
+	rangeSpan.innerText = range.value;
 });
 
+// если все чекбоксы отключены, ставить два
 
-$('[data-modal=consultation]').on('click', function() {
-    $('.overlay, #consultation').fadeIn();
-});
-$('.modal__close').on('click', function(){
-    $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
-});
+let numbersChars = '1234567890'
+	upperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	lowerChars = 'abcdefghijklmnopqrstuvwxyz'
+	symbols = '!"#$%&()*+,-./:;<=>?'
+
+function charsetGeneration() {
+
+}
+
+
+function generate(length, charset) {
+	let password = '';
+	for(let i = 0; i < length; ++i){
+		 password += charset[
+				 Math.floor(
+						 Math.random() * charset.length
+				)
+		];
+	}
+	result.innerText = password;
+	return password;
+}
 
 
 
-$('form').submit(function(e) {
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: "mailer/smart.php",
-        data: $(this).serialize()
-    }).done(function() {
-        $(this).find("input").val("");
-        $('#consultation, #order').fadeOut();
-        $('.overlay, #thanks').fadeIn('slow');
+generate(6, 'abcd123456');
 
-        $('form').trigger('reset');
-    });
-    return false; 
-});
+
+//https://v3c.ru/javascript/generator-parolej
+//https://htmler.ru/2014/02/13/generatsiya-parolya-javascript/
+//https://snipp.ru/jquery/generate-password-js
+//https://www.npmjs.com/package/password-generator

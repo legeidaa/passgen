@@ -3,14 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sections</title>
+    <title>Password generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">    
     <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/style.min.css">
+    
 </head>
 <body>
-
+    <!-- https://1password.com/ru/password-generator/
+    http://www.onlinepasswordgenerator.ru/
+    https://www.ukraine.com.ua/info/tools/passwdgenerate/
+    https://randstuff.ru/password/ -->
     <section>
-        
+        <div class="container">
+            <form>
+                <label class="label-numbers"><input type="checkbox" cheked name="numbers" id="numbers">Цифры</label>
+                <label class="label-upper"><input type="checkbox" name="upper" id="upper">Прописные буквы</label>
+                <label class="label-lower"><input type="checkbox" name="lower" id="lower">Строчные буквы</label>
+                <label class="label-symbols"><input type="checkbox" name="symbols" id="symbols">Спецсимволы</label>
+                <label class="label-range"><input type="range" min="5" max="30" step="1" name="range" id="range">Длина <span>10</span></label>
+    
+                <button>Сгенерировать</button>
+            </form>
+    
+            <div class="result">
+                <span></span>
+                <button>Скопировать</button>
+            </div>
+        </div>
     </section>
    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

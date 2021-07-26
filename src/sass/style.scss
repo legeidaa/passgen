@@ -1,20 +1,123 @@
 @import 'libs/bootstrap-reboot';
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif !important;
 }
 
-.section {
+body {
     height: 100vh;
-    background: rgb(131,58,180);
-    background: linear-gradient(to top, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,237,69,1) 100%);
+    /* background: rgb(131,58,180); */
+    background: linear-gradient(to top, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgb(252, 209, 69) 100%);
 }
 
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+section {
 
+    width: 100%;
+    height: 100%;
 
+    display: flex;
+    align-items: center;
+    
+}
 
+form {
+    width: 60%;
+    margin: 0 auto;
+    padding: 40px 60px;
+    background-color: rgba(#ffffff, 0.8);
+    border-radius: 1000px;
 
-/* 
-@import "base/media"; */
+    display: grid;
+    grid-template: auto auto / 1fr 1fr 1fr;
+    grid-auto-flow: column;
+    row-gap: 15px;
+    column-gap: 10px;
+    
+    
+    button {
+        border-radius: 1000px;
+        position: relative;
+        border: none;
+        /* z-index: 2; */
+        background-color: #fff;
+        transform-style: preserve-3d;
+        font-weight: 600;
+        &:hover {
+            cursor: pointer;
+            &::before {
+                top: -1px; bottom: -3px;
+            left: -1px; right: -3px;
+            }
+        }
+        &::before {
+            position: absolute;
+            top: -1px; bottom: -1px;
+            left: -1px; right: -1px;
+            content: '';
+            /* z-index: 0; */
+            background: linear-gradient(to top, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgb(252, 209, 69) 100%);
+            border-radius: 1000px;
+            transform: translateZ(-1px);
+            transition: 0.2s;
+        }
+    }
+    
+}
+
+.result {
+    
+    width: 60%;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 50px;
+    
+    /* background-color: rgba(#ffffff, 0.8);
+    border-radius: 1000px; */
+    display: flex;
+    justify-content: space-between;
+
+    span {
+        background-color: rgba(#ffffff, 0.8);
+        border-radius: 1000px;
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    button {
+        width: 300px;
+        border-radius: 1000px;
+        border: none;
+        font-weight: 600;
+        transform-style: preserve-3d;
+        position: relative;
+        transition: 0.3s;
+        &:hover {
+            cursor: pointer;
+            &::before {
+                top: -1px; bottom: -3px;
+            left: -1px; right: -3px;
+            }
+        }
+        &::before {
+            position: absolute;
+            top: -1px; bottom: -1px;
+            left: -1px; right: -1px;
+            content: '';
+            /* z-index: 0; */
+            background: linear-gradient(to top, rgb(252, 209, 69) 0%, rgba(253,29,29,1) 50%,rgba(131,58,180,1)  100%);
+            border-radius: 1000px;
+            transform: translateZ(-1px);
+            transition: 0.2s;
+        }
+        
+    }
+}
 
 
