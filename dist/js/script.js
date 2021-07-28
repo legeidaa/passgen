@@ -5,9 +5,13 @@ let numbers = document.querySelector('#numbers'),
 	range = document.querySelector('#range'),
 	rangeSpan = document.querySelector('.label-range span'),
 	result = document.querySelector('.result input'),
-
 	btnGen = document.querySelector('form div'),
 	btnCopy = document.querySelector('.result button');
+
+let numbersChars = ['1','2','3','4','5','6','7','8','9','0'],
+	upperChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+	lowerChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
+	symbolsChars = ['!', '@', '#', '$', '%', '?'];
 
 
 
@@ -15,14 +19,6 @@ rangeSpan.innerText = range.value;
 range.addEventListener("input", function() {
 	rangeSpan.innerText = range.value;
 });
-
-
-
-let numbersChars = ['1','2','3','4','5','6','7','8','9','0'],
-	upperChars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-	lowerChars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
-	symbolsChars = ['!', '@', '#', '$', '%', '?'];
-
 
 function generatePass() {
 	let passArr = [],
@@ -49,21 +45,19 @@ function generatePass() {
 	const randomInteger = ( min, max ) => Math.round(min - 0.5 + Math.random() * (max - min + 1));
 	passArr.sort(sortFunc);
 
-
-	//проверяем каждый элемент строки на содержание хотя бы одного элемента массива
-	const include = function(arr, string) {
-		console.log(string);
-		let stringArr = string.split('');
-		console.log(!arr.some(i => stringArr.includes(i) > 0))
-		return !arr.some(i => stringArr.includes(i) > 0);
-	};
-
 	function finalSorting(){
 		for (let i = 0; i < range.value; i++) {
 			finalPass += passArr[randomInteger(0, passArr.length - 1)];
 		}
 	}
 	finalSorting();
+
+	//проверяем каждый элемент строки на содержание хотя бы одного элемента массива
+	const include = function(arr, string) {
+		let stringArr = string.split('');
+	
+		return !arr.some(i => stringArr.includes(i) > 0);
+	};
 
 	//если в конечный результат не попадает хотя бы один символ из всех выбранных массивов, перезапускаем функцию
 	if (symbols.checked  && include(symbolsChars, finalPass)) {
@@ -90,18 +84,17 @@ function generatePass() {
 			finalSorting();
 		}
 	}
-
-
-
 	//хз как сделать проверку на все чекбоксы сразу
 
 	result.value = finalPass;
 }
 
+generatePass();
+
 btnGen.addEventListener('click', generatePass);
 
 btnCopy.addEventListener('click', () => {
 	result.select();
-	document.execCommand('copy')
+	document.execCommand('copy');
 });
 
